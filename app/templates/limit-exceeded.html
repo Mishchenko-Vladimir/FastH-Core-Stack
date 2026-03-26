@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Request limit exceeded{% endblock %}
+
+{% block content %}
+<div class="info-screen">
+    <div class="modal-content">
+        <ion-icon name="hourglass-outline"></ion-icon>
+        <h2>Too Many Requests</h2>
+        <p>
+            Slow down a bit! You've made too many attempts in a short period.
+            For your security, we've temporarily blocked further requests. Please wait a minute and try again.
+        </p>
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

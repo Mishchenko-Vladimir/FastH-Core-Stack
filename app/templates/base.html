@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="icon" href="#">
+    <link rel="preload" href="/static/css/main.css" as="style">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script
+        src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"
+        integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz"
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a class="logo-header" href="/">Logo</a>
+        </nav>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+            <button id="nav-auth-btn"
+                    hx-get="/auth/state"
+                    hx-target="#auth-modal-content"
+                    class="nav-btn">
+                <ion-icon name="person-circle"></ion-icon>
+                <span class="spinner"></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+            <h1>Welcome to My Website</h1>
+        {% endblock %}
+
+        <div id="auth-modal-content" class="modal-backdrop" onclick="this.innerHTML = ''"></div>
+
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <a class="logo-footer" href="/">Logo</a>
+            </div>
+            <div class="footer-col">
+                <h5>Follow&nbsp;Us</h5>
+                <div class="social-links">
+                    <a href="#"><ion-icon name="logo-youtube" alt="Ютуб"></ion-icon></a>
+                    <a href="#"><ion-icon name="logo-vk" alt="Вконтакте"></ion-icon></a>
+                    <a href="#"><ion-icon name="navigate-circle" alt="Телеграм"></ion-icon></a>
+                    <a href="#"><ion-icon name="logo-instagram" alt="Инстаграм"></ion-icon></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Contact&nbsp;Us</h5>
+                <div class="footer-href">
+                    <p>
+                        <a href="mailto:info@mywebsite.ru" target="_blank">
+                            <ion-icon name="mail" alt="Наша почта"></ion-icon>&nbsp;
+                            <span>&nbsp;info@mywebsite.ru</span>
+                        </a>
+                    </p>
+                    <p>
+                        <a href="tel:+79000000000">
+                            <ion-icon name="call" alt="Наш телефон"></ion-icon>
+                            <span>&nbsp;+7(900)000-00-00</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Our&nbsp;Location</h5>
+                <div class="footer-href">
+                    <p>
+                        <a href="https://yandex.ru/maps/?mode=search&text=Москва,+Вавилова,+46" target="_blank">
+                            <ion-icon name="location" alt="Наш адрес"></ion-icon>
+                            <span>46 Vavilova St, Moscow, Russia</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Working Hours:</h5>
+                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                <p>Sat - Sun: Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; MyWebsite, 2026. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        const authBtn = document.getElementById('nav-auth-btn');
+
+        function updateAuthUI() {
+            if (localStorage.getItem("is_logged") === "true") {
+                authBtn.classList.add('is-logged');
+            } else {
+                authBtn.classList.remove('is-logged');
+            }
+        }
+
+        document.body.addEventListener("userLoggedIn", () => {
+            localStorage.setItem("is_logged", "true");
+            updateAuthUI();
+        });
+
+        document.body.addEventListener("userLoggedOut", () => {
+            localStorage.removeItem("is_logged");
+            updateAuthUI();
+        });
+
+        updateAuthUI();
+    </script>
+</body>
+
+</html>

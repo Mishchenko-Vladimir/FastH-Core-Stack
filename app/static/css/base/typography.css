@@ -1,0 +1,55 @@
+/* Настройки текста */
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    font-weight: 400;
+    color: var(--dark-color);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 { 
+    font-size: 2.5rem;   
+    margin-bottom: 1.5rem; 
+}
+
+h2 { 
+    font-size: 2rem;     
+    margin-bottom: 1.25rem; 
+}
+
+h3 { 
+    font-size: 1.5rem;   
+    margin-bottom: 1rem;
+}
+
+h4 { 
+    font-size: 1.25rem;  
+    margin-bottom: 0.75rem; 
+}
+
+h5 { 
+    font-size: 1.1rem;   
+    margin-bottom: 0.5rem; 
+}
+
+h6 { 
+    font-size: 1rem;     
+    margin-bottom: 0.5rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+small, .text-muted {
+    font-size: 0.875rem;
+    color: #6c757d;
+}

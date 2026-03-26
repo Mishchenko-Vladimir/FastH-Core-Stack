@@ -1,0 +1,14 @@
+{% extends "mailing/base-mailing.html" %}
+
+{% block title %}
+  Вы подтвердили почту!
+{% endblock %}
+
+{% block main %}
+  <p>
+    {{ user.first_name.capitalize() }},
+  </p>
+  <p>
+    Ваша почта подтверждена!
+  </p>
+{% endblock %}

@@ -1,0 +1,113 @@
+/* Стили подвала */
+
+footer {
+    backface-visibility: hidden;
+    background-color: var(--footer-bg);
+    color: var(--heading-footer-color);
+    z-index: 10;
+    padding: 48px 0 24px;
+    margin-top: auto;
+    border-top: 2px solid var(--border-color);
+    box-shadow: 0 0 30px var(--box-shadow-color);
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 50px;
+    gap: 2rem;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    
+    & h4 {
+        margin-bottom: 1.2rem;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+    }
+
+    & p, & a:not(.logo-footer) {
+        font-size: 0.9rem;
+        color: var(--words-footer-color);
+        line-height: 1.6;
+    }
+
+}
+
+.logo-footer {
+    color: var(--heading-footer-color);
+    font: 700 1.8rem var(--font-main);
+    transition: var(--transition);
+    display: inline-block;
+
+    &:hover {
+        transform: scale(1.15);
+    }
+}
+
+.social-links {
+    display: flex;  
+    gap: 18px;                 
+
+    & a ion-icon {
+        font-size: 20px;
+        transition: var(--transition);
+    }
+
+    & a ion-icon:hover {
+        color: var(--heading-footer-color);
+        transform: scale(1.3);
+    }
+}
+
+.footer-href {
+    display: flex;
+    flex-direction: column;
+
+    & a {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        position: relative;
+        color: var(--heading-footer-color);
+        transition: color 0.5s;
+        text-decoration: none;
+
+        & ion-icon {
+            font-size: 1.1rem;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 2px;
+            background: var(--heading-footer-color);
+            transform: scaleX(0);
+            transition: transform 0.5s;
+            transform-origin: center;
+        }
+
+        &:hover {
+            color: var(--heading-footer-color);
+            
+            &::after {
+                transform: scaleX(1);
+            }
+        }
+    }
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 2rem;
+    padding-top: 24px;
+    font-size: 0.8rem;
+    color: #888;
+}

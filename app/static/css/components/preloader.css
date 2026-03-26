@@ -1,0 +1,19 @@
+/* Стили для индикаторов загрузки;*/
+
+.spinner {
+    position: absolute;
+    width: 1.2em;
+    height: 1.2em;
+    border: 3px solid transparent;
+    border-top: 2px solid currentColor;
+    border-right: 3px solid currentColor;
+    border-radius: 50%;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

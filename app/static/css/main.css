@@ -1,0 +1,19 @@
+/* ТОЧКА ВХОДА (Основной CSS-файл, который включает все остальные файлы через @import) */
+
+/* 1. Основа */
+@import "base/variables.css";
+@import "base/reset.css";
+@import "base/typography.css";
+
+/* 2. Раскладка */
+@import "layouts/containers.css";
+
+/* 3. Компоненты */
+@import "components/header.css";
+@import "components/footer.css";
+@import "components/buttons.css";
+@import "components/forms.css";
+@import "components/preloader.css";
+
+/* 4. Страницы */
+@import "pages/auth.css";

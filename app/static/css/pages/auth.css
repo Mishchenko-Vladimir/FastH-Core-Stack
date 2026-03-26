@@ -1,0 +1,295 @@
+/* Стили и анимация перехода между формами авторизации и регистрации */
+
+.modal-backdrop {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    pointer-events: none;
+    transition: background 0.6s ease, backdrop-filter 0.6s ease;
+    overflow: hidden;
+
+    &:not(:empty) {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        pointer-events: auto;
+    }
+}
+
+.modal-content {
+    padding: 2.5rem;
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    min-width: 300px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+    color: black;
+
+    & h2 {
+        margin-bottom: 0px;
+    }
+
+    & h3 {
+        margin-top: 8px;
+        margin-bottom: 0px;
+    }
+
+    & form {
+        width: 100%;
+    }
+
+    &:not(.slide-next) {
+        animation: zoomIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    &.slide-next {
+        animation: slideInRight 0.3s ease-out forwards;
+    }
+}
+
+.htmx-swapping.modal-content {
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 460px;
+    animation: slideOutLeft 0.4s ease-in forwards !important;
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.3) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOutLeft {
+    from { opacity: 1; transform: translate(-50%, -50%); }
+    to { opacity: 0; transform: translate(-150%, -50%); }
+}
+
+.close-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: var(--dark-color);
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & button {
+        color: var(--light-color);
+    }
+
+    & button:hover {
+        color: var(--light-color-hover);
+    }
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid var(--dark-color);
+    margin: 30px 0;
+
+    & label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        font-size: 1em;
+        color: var(--dark-color);
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    & .icon {
+        position: absolute;
+        right: 8px;
+        font-size: 1.2em;
+        color: var(--dark-color);
+        line-height: 54px;
+    }
+
+    & input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        color: var(--dark-color);
+        font-weight: 600;
+        padding: 0 35px 0 5px;
+    }
+
+    & input:focus~label,
+    & input:not(:placeholder-shown) ~ label {
+        top: -5px;
+    }
+}
+
+.error-placeholder {
+    min-height: 30px;
+    margin-top: -14px;
+    margin-bottom: 6px;
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+
+    &.htmx-added {
+        opacity: 0;
+    }
+}
+
+.success-message {
+    color: var(--success-color);
+    text-shadow: 0 0 10px rgba(0, 128, 0, 0.4);
+}
+
+.error-message {
+    color: var(--error-color);
+}
+
+.error-hidden {
+    opacity: 0 !important;
+}
+
+.remember-forgot {
+    font-size: 15px;
+    color: var(--dark-color);
+    font-weight: 500;
+    margin: 0 0 8px;
+    display: flex;
+    justify-content: space-between;
+
+    & label input {
+        accent-color: var(--dark-color);
+        margin-right: 3px;
+        transition: .2s;;
+    }
+
+    & label input:hover {
+        transform: scale(1.1);
+    }
+}
+
+.login-register {
+    font-size: 15px;
+    color: var(--dark-color);
+    text-align: center;
+    font-weight: 500;
+    margin: 20px 0 0;
+
+    & p a {
+        font-weight: 600;
+    }
+}
+
+.terms-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 488px;
+
+    & h4 {
+        display: flex;
+        justify-content: center;
+    }
+
+    & .terms-scroll-area {
+        overflow-y: auto;
+        margin: 18px 0;
+        padding-right: 10px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        text-align: left;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        & .terms-footer {
+            margin-top: 10px;
+            border-top: 1px solid var(--dark-color-hover);
+            padding-top: 10px;
+            font-size: 0.8rem;
+            color: var(--dark-color-hover);
+        }
+    }
+}
+
+.profile-info {
+    width: 100%;
+    margin: 10px 0;
+
+    & div {
+        border-bottom: 1px solid var(--dark-color);
+        margin-top: 20px;
+        font-size: 1.2em;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+.profile-actions{
+    width: 100%;
+    margin: 10px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.info-screen {
+    text-align: center;
+    padding: 100px 0px;
+
+    & .modal-content {
+        display: inline-block;
+        max-width: 500px;
+        min-width: 0px;
+
+        & h2 {
+            margin-bottom: 1rem;
+        }
+
+        & ion-icon:not(.small-icon) {
+            font-size: 4rem;
+        }
+    }
+}

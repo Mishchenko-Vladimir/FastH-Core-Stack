@@ -1,0 +1,52 @@
+/* Цвета, шрифты, размеры (CSS Variables) */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    /* Шрифты */
+    --font-main: 'Poppins', sans-serif;
+
+
+    /* Цвета */
+    /* Основные */
+    --primary-color: #162938;
+    --primary-hover: #2d3e4b;
+    --dark-color: #000000;
+    --dark-color-hover: #222222;
+    --light-color: #ffffff;
+    --light-color-hover: #e0e0e0;
+    --error-color: #B22222;
+    --success-color: #008000;
+
+    /* Слова */
+    --words-header-color: #000000;
+    --words-footer-color: #ccc;
+    --heading-footer-color: #fff;
+
+    /* Тени и границы */
+    --border-color: rgba(255, 255, 255, .5);
+    --box-shadow-color: rgba(0, 0, 0, .5);
+
+    /* Остальное */
+    --footer-bg: #1a1a1a;
+
+
+    /* Размеры */
+    --header-padding: 15px 50px;
+    --header-height: 100px;
+    --main-padding: 0 50px 15px 50px;
+    --transition: all 0.3s ease;
+}
+
+/* На мобилках, когда шапка стала в две строки, увеличивается отступ */
+@media (max-width: 655px) {
+    :root {
+        --header-height: 168px; 
+    }
+}
+
+@media (max-width: 383px) {
+    :root {
+        --header-height: 220px; 
+    }
+}

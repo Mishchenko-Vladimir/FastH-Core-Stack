@@ -1,0 +1,57 @@
+<div id="modal-auth" class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-bg">
+        <button class="btn-close" onclick="document.getElementById('auth-modal-content').innerHTML = ''">×</button>
+    </span>
+    <h2>User Profile</h2>
+    <div class="profile-info">
+        <div>
+            <ion-icon name="person-outline"></ion-icon>
+            <code>{{ user.first_name }}</code>
+        </div>
+        <div>
+            <ion-icon name="mail-outline"></ion-icon>
+            <code>{{ user.email }}</code>
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        {% if not user.is_verified %}
+            {% if not verify_messages and not error_messages %}
+                <a hx-post="/auth/request-verify-email"
+                   hx-target="#modal-auth"
+                   hx-swap="outerHTML"
+                   class="link">
+                    <span>Verify Email</span>
+                    <span class="spinner"></span>
+                </a>
+            {% endif %}
+
+            {% if verify_messages %}
+                <p class="success-message">{{ verify_messages }}</p>
+            {% endif %}
+
+            {% if error_messages %}
+                <p class="error-message">{{ error_messages }}</p>
+            {% endif %}
+        {% else %}
+            <p class="success-message">✅ Verified</p>
+        {% endif %}
+
+        {% if success %}
+            <p class="success-message">{{ success }}</p>
+        {% else %}
+            <a hx-post="auth/forgot-password"
+               hx-target="#modal-auth"
+               hx-swap="outerHTML"
+               class="link">
+                <span>Change Password</span>
+                <span class="spinner"></span>
+            </a>
+        {% endif %}
+    </div>
+
+    <button hx-post="/auth/logout-handler" hx-target="#auth-modal-content" class="btn">
+        <span>Logout</span>
+        <span class="spinner"></span>
+    </button>
+</div>

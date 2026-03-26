@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Email Verification{% endblock %}
+
+{% block content %}
+<div class="info-screen">
+    <div class="modal-content">
+        {% if success %}
+            <ion-icon name="checkmark-circle-outline" class="success-message"></ion-icon>
+            <h2>Success!</h2>
+            <p>{{ message }}</p>
+            <p>You can now close this window or return to the home page.</p>
+        {% else %}
+            <ion-icon name="alert-circle-outline" class="error-message"></ion-icon>
+            <h2>Verification Failed</h2>
+            <p>{{ message }}</p>
+        {% endif %}
+
+        <br>
+        <a href="/" class="btn">Go to Home</a>
+    </div>
+</div>
+{% endblock %}
