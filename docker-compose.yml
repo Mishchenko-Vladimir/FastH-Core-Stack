@@ -1,0 +1,60 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker-build/app/Dockerfile
+    environment:
+      APP_CONFIG__DB__URL: postgresql+asyncpg://postgres:password@pg:5432/db_shop
+      APP_CONFIG__DB__ECHO: 0
+    ports:
+      - "8000:8000"
+    depends_on:
+      pg:
+        condition: service_healthy
+#    command:
+#      - python
+#      - run_main.py
+    develop:
+      watch:
+        - action: sync+restart
+          path: app
+          target: /app
+        - action: rebuild
+          path: uv.lock
+
+  pg:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: db_shop
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+#    ports:
+#      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:8.7
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    depends_on:
+      pg:
+        condition: service_healthy
+
+  redis:
+    image: redis:8-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
