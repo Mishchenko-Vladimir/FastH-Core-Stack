@@ -1,0 +1,38 @@
+[project]
+name = "FastH-Core-Stack"
+version = "0.1.0"
+description = "High-performance Fullstack Boilerplate: FastAPI, HTMX, SQLAdmin, and Postgres with a sleek Glassmorphism UI and built-in Auth flow."
+requires-python = ">=3.14"
+dependencies = [
+    "aiosmtplib>=5.0.0",
+    "aiosqlite>=0.22.1",
+    "alembic>=1.18.0",
+    "apscheduler>=3.11.2",
+    "asyncpg>=0.31.0",
+    "black>=25.12.0",
+    "faker>=40.1.0",
+    "fastapi>=0.128.0",
+    "fastapi-cache2>=0.2.2",
+    "fastapi-users[sqlalchemy]>=15.0.3",
+    "gunicorn>=23.0.0",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.6",
+    "orjson>=3.11.5",
+    "pydantic-settings>=2.12.0",
+    "pydantic[email]>=2.12.5",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "redis>=7.1.0",
+    "slowapi>=0.1.9",
+    "sqladmin[full]>=0.22.0",
+    "sqlalchemy[asyncio]>=2.0.45",
+    "uvicorn[standard]>=0.40.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "app"]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning:slowapi.*:",
+    "ignore::RuntimeWarning:coroutine 'noop' was never awaited"
+]
