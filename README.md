@@ -183,6 +183,8 @@ FastH-Core-Stack/
 > ```
 
 4. **Запуск приложение через Docker**
+> Убедись что файл `prestart.sh` в папке `docker-build/app`, стоит в расширении `LF`, а не `CRLF`.
+> 
 > Сборка образа с именем `app`:
 > ```bash
 > docker compose build app
