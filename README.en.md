@@ -1,5 +1,5 @@
 <p align="center">
-  <b>English</b> | <a href="..">Русский</a>
+  <b>English</b> | <a href="../../">Русский</a>
 </p>
 
 ---
@@ -30,8 +30,8 @@ Forget about heavy JS frameworks and JWT overhead: everything here is powered by
 |----------|---:|
 | **🐍 Language:** Python 3.14+ | [![Python](https://img.shields.io/badge/Python-3.14%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/) |
 | **⚡ Framework:** FastAPI | [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/) |
-| **🪄 Frontend:** HTMX | [![HTMX](https://shields.io)](https://htmx.org) |
-| **📅 Scheduler:** APScheduler | [![APScheduler](https://shields.io)](https://readthedocs.io) |
+| **🪄 Frontend:** HTMX | [![HTMX](https://img.shields.io/badge/HTMX-06204f?style=for-the-badge&logo=htmx&logoColor=white)](https://htmx.org) |
+| **📅 Scheduler:** APScheduler | [![APScheduler](https://img.shields.io/badge/APScheduler-black?style=for-the-badge&logo=python&logoColor=white)](https://readthedocs.io) |
 | **🚀 ASGI Server:** Uvicorn + Gunicorn | [![Uvicorn](https://img.shields.io/badge/Uvicorn-005571?style=for-the-badge&logo=fastapi&logoColor=white)](https://www.uvicorn.org/) [![Gunicorn](https://img.shields.io/badge/Gunicorn-F46D43?style=for-the-badge&logo=apache&logoColor=white)](https://gunicorn.org/) |
 | **🗄️ Database:** PostgreSQL (asyncpg) | [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/) |
 | **🔁 ORM:** SQLAlchemy (async) | [![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-0B5566?style=for-the-badge&logo=python&logoColor=white)](https://www.sqlalchemy.org/) |
