@@ -180,7 +180,7 @@ FastH-Core-Stack/
 > ```
 
 4. **Run via Docker**
-> Make sure the `prestart.sh` file in the `docker-build/app` folder uses `LF` line endings, not `CRLF`.
+> If you are running the image on Windows, make sure that the files `docker-build/app/prestart.sh` and `app/run.py` use LF line endings, not CRLF.
 > 
 > Build image named `app`:
 > ```bash

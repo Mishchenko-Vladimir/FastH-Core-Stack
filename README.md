@@ -183,7 +183,7 @@ FastH-Core-Stack/
 > ```
 
 4. **Запуск приложение через Docker**
-> Убедись что файл `prestart.sh` в папке `docker-build/app`, стоит в расширении `LF`, а не `CRLF`.
+> Если вы запускаете образ в Windows, убедись что файлы `docker-build/app/prestart.sh` и `app/run.py`, стоят в расширении `LF`, а не `CRLF`.
 > 
 > Сборка образа с именем `app`:
 > ```bash
