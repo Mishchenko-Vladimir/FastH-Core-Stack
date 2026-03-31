@@ -1,8 +1,8 @@
 services:
   app:
     build:
-      context: .
-      dockerfile: docker-build/app/Dockerfile
+      context: ./
+      dockerfile: ./docker-build/app/Dockerfile
     environment:
       APP_CONFIG__DB__URL: postgresql+asyncpg://postgres:password@pg:5432/db_shop
       APP_CONFIG__DB__ECHO: 0
