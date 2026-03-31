@@ -114,9 +114,6 @@ def mock_aiosmtplib():
     Автоматически подменяет отправку почты на пустышку для всех тестов.
     Теперь aiosmtplib.send не будет пытаться соединиться с 127.0.0.1.
     """
-    # Путь должен указывать на модуль, где импортирован aiosmtplib.
-    # Если send_email лежит в core/auth/mail.py, то путь будет "core.auth.mail.aiosmtplib.send"
-    # Но проще всего замокать само приложение aiosmtplib глобально:
     with patch("aiosmtplib.send", new_callable=AsyncMock) as mock:
         yield mock
 
