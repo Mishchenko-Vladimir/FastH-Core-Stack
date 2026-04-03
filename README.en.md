@@ -21,6 +21,7 @@ Forget about heavy JS frameworks and JWT overhead: everything here is powered by
 - [🛠️ Tech Stack](#-tech-stack)
 - [✅ Features](#-features)
 - [📂 Project Structure](#-project-structure)
+- [📸 Examples of application operation](#-examples-of-application-operation)
 - [⚙️ Installation and Setup](#-installation-and-setup)
 - [📬 Contacts](#-contacts)
 
@@ -145,6 +146,25 @@ FastH-Core-Stack/
 ├── pyproject.toml               # Project config and dependencies
 └── uv.lock                      # Fixed dependency versions
 ```
+## 📸 Examples of application operation
+
+### 🖼️ UI & Interface Showcase
+
+Below are the key screens of the application, demonstrating the seamless integration of **FastAPI**, **HTMX**, and a modern **Glassmorphism UI**:
+
+- `🏠 Main Hub` — Landing page with responsive layout, pre-built footer, and navigation.
+- `🔐 Auth Lifecycle` — Full cycle for registration, login, and password recovery via "Forgot Password."
+- `📧 Email Verification` — Automated notification pages for successful or failed email confirmations.
+- `👤 User Profile` — Personal dashboard for managing user-specific data and settings.
+- `🛡️ Security & Access` —  Password change forms and dedicated security policy pages.
+- `🛠️ Admin Control ` — Professional data management interface (powered by SQLAdmin) for full database oversight.
+- `🚦 Error Handling` — Custom-styled pages for system events:
+  - `404 Not Found` — Graceful handling of non-existent routes.
+  - `429 Rate Limit` — Intelligent protection against spam and brute-force (Slowapi).
+
+> *All forms operate asynchronously via HTMX, providing instant feedback without page reloads.*
+
+![Image application operation](docs/assets/examples-application-operation.png)
 
 ## ⚙️ Installation and Setup
 
