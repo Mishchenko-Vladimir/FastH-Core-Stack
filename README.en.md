@@ -162,9 +162,9 @@ Below are the key screens of the application, demonstrating the seamless integra
   - `404 Not Found` — Graceful handling of non-existent routes.
   - `429 Rate Limit` — Intelligent protection against spam and brute-force (Slowapi).
 
-> *All forms operate asynchronously via HTMX, providing instant feedback without page reloads.*
-
 ![Image application operation](docs/assets/examples-application-operation.png)
+
+> *All forms operate asynchronously via HTMX, providing instant feedback without page reloads.*
 
 ## ⚙️ Installation and Setup
 
