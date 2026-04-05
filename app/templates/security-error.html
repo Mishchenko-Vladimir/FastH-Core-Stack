@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Security Token Expired
+{% endblock %}
+
+{% block content %}
+<div class="info-screen">
+    <div class="modal-content">
+        <ion-icon name="shield-half-outline"></ion-icon>
+        <h2>Security Session Expired</h2>
+        <p>
+            Your security token has expired or is invalid. This usually happens if the page
+            has been open for a long time or if the connection was interrupted.
+            <br><br>
+            Don't worry, your data is safe! Just refresh the page to get a new secure session
+             and try again.
+        </p>
+
+        <a href="/" class="btn">Refresh & Back to Home</a>
+    </div>
+</div>
+{% endblock %}
