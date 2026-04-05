@@ -166,6 +166,7 @@ def create_app(
             app=app,
             session_maker=db_helper.session_factory,
             authentication_backend=authentication_backend,
+            base_url=settings.admin.admin_panel_url,
         )
         register_admin_views(admin)
 

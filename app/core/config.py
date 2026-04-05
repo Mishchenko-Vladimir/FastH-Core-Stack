@@ -145,6 +145,7 @@ class AdminConfig(BaseModel):
     # True - Публичная форма аутентификации для администратора
     # False - SQLAdmin форма аутентификации
     public_auth: bool = True
+    admin_panel_url: str = "/admin-panel"
 
     admin_email: str
     admin_password: str
