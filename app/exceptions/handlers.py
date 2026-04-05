@@ -2,11 +2,11 @@
 import logging
 
 from fastapi import FastAPI, Request, Response, status
-from fastapi.responses import ORJSONResponse
+from fastapi_csrf_protect.exceptions import CsrfProtectError
 
 from pydantic import ValidationError
 from sqlalchemy.exc import DatabaseError
-from starlette.responses import RedirectResponse
+from starlette.responses import RedirectResponse, JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from core.templates import templates
@@ -37,7 +37,7 @@ def register_errors_handlers(app: FastAPI) -> None:
     def handle_pydantic_validation_error(
         request: Request,
         exc: ValidationError,
-    ) -> ORJSONResponse:
+    ) -> JSONResponse:
         """
         Обрабатывает ошибки валидации Pydantic при создании/обновлении моделей.
 
@@ -46,7 +46,7 @@ def register_errors_handlers(app: FastAPI) -> None:
         :return: JSON-ответ, с деталями ошибок валидации и со статусом 422 Unprocessable Entity.
         """
 
-        return ORJSONResponse(
+        return JSONResponse(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             content={
                 "message": "Ошибка валидации данных",
@@ -58,7 +58,7 @@ def register_errors_handlers(app: FastAPI) -> None:
     def handle_db_error(
         request: Request,
         exc: DatabaseError,
-    ) -> ORJSONResponse:
+    ) -> JSONResponse:
         """
         Обрабатывает критические ошибки базы данных (например, разрыв соединения).
 
@@ -71,7 +71,7 @@ def register_errors_handlers(app: FastAPI) -> None:
             "Произошла ошибка базы данных",
             exc_info=exc,
         )
-        return ORJSONResponse(
+        return JSONResponse(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             content={
                 "message": "Произошла непредвиденная ошибка. "
@@ -100,7 +100,7 @@ def register_errors_handlers(app: FastAPI) -> None:
              - Для UI-запросов: редирект на /page-missing.
         """
         if request.url.path.startswith("/api"):
-            return ORJSONResponse(
+            return JSONResponse(
                 status_code=exc.status_code,
                 content={"detail": exc.detail},
             )
@@ -147,3 +147,40 @@ def register_errors_handlers(app: FastAPI) -> None:
             context={"detail": exc.detail},
             status_code=exc.status_code,
         )
+
+    @app.exception_handler(CsrfProtectError)
+    def csrf_protect_exception_handler(request: Request, exc: CsrfProtectError):
+        """
+        Ловит любые ошибки CSRF (MissingToken, TokenValidation и т.д.)
+        """
+        # Логика для API
+        if request.url.path.startswith("/api"):
+            return JSONResponse(
+                status_code=exc.status_code,
+                content={"detail": exc.message},
+            )
+
+        # Логика для UI/HTMX
+        if "hx-request" in request.headers:
+            path = request.url.path
+            template_map = {
+                "/auth/login-handler": "auth/snippets/login.html",
+                "/auth/register-handler": "auth/snippets/register.html",
+                "/auth/process_password_reset": "auth/snippets/reset-password-inner.html",
+            }
+            template_name = template_map.get(path)
+            if template_name:
+                return templates.TemplateResponse(
+                    request=request,
+                    name=template_name,
+                    context={
+                        "error": "Security token expired. Please refresh the page."
+                    },
+                    status_code=200,
+                )
+            response = Response()
+            response.headers["HX-Redirect"] = "/security-error"
+            return response
+
+        # Обычный переход
+        return RedirectResponse(url="/security-error", status_code=303)
