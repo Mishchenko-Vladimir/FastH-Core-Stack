@@ -4,6 +4,7 @@
     </span>
     <h2>Registration</h2>
     <form hx-post="/auth/register-handler" hx-target="#auth-modal-content">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
         <div class="input-box">
             <span class="icon"><ion-icon name="person"></ion-icon></span>
             <input type="text" name="first_name" placeholder=" " required>

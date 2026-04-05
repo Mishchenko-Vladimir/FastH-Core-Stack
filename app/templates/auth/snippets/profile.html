@@ -18,6 +18,7 @@
         {% if not user.is_verified %}
             {% if not verify_messages and not error_messages %}
                 <a hx-post="/auth/request-verify-email"
+                   hx-vals='{"csrf_token": "{{ csrf_token }}"}'
                    hx-target="#modal-auth"
                    hx-swap="outerHTML"
                    class="link">
@@ -41,6 +42,7 @@
             <p class="success-message">{{ success }}</p>
         {% else %}
             <a hx-post="auth/forgot-password"
+               hx-vals='{"csrf_token": "{{ csrf_token }}"}'
                hx-target="#modal-auth"
                hx-swap="outerHTML"
                class="link">
@@ -50,7 +52,10 @@
         {% endif %}
     </div>
 
-    <button hx-post="/auth/logout-handler" hx-target="#auth-modal-content" class="btn">
+    <button hx-post="/auth/logout-handler"
+            hx-vals='{"csrf_token": "{{ csrf_token }}"}'
+            hx-target="#auth-modal-content"
+            class="btn">
         <span>Logout</span>
         <span class="spinner"></span>
     </button>
