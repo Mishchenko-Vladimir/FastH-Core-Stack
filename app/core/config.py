@@ -26,7 +26,6 @@ class SiteConfig(BaseModel):
     )
 
     # Настройки куки
-    cookie_max_age: int = 3600  # время жизни куки в секундах
     cookie_secure: bool = False  # будет установлено через .model_post_init()
 
     # Список разрешенных доменов для кросс-доменных запросов (сайты с которых можно отправлять запросы на наш API)
@@ -47,6 +46,19 @@ class SiteConfig(BaseModel):
             self.cookie_secure = True
         else:
             self.cookie_secure = False
+
+
+class CsrfSettings(BaseModel):
+    """Настройки защиты от CSRF"""
+
+    secret_key: str
+    cookie_max_age: int = 3600
+    cookie_key: str = "fastapi_csrf"
+    token_key: str = "csrf_token"
+    cookie_samesite: str = "lax"
+    token_location: Literal["body", "header"] = "body"
+    methods: set = {"POST", "PUT", "PATCH", "DELETE"}
+    cookie_secure: bool = False  # будет установлено через .model_post_init()
 
 
 class RunConfig(BaseModel):
@@ -88,6 +100,7 @@ class ViewPrefix(BaseModel):
     home: str = ""
     page_missing: str = "/page-missing"
     limit_exceeded: str = "/limit-exceeded"
+    security_error: str = "/security-error"
     auth: str = "/auth"
 
 
@@ -220,6 +233,7 @@ class Settings(BaseSettings):
         env_prefix="APP_CONFIG__",
     )
     site: SiteConfig
+    csrf: CsrfSettings
     run: RunConfig = RunConfig()
     gunicorn: GunicornConfig = GunicornConfig()
     logging: LoggingConfig = LoggingConfig()

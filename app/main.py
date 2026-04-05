@@ -2,6 +2,7 @@ import uvicorn
 import logging
 
 from api import router as api_router
+from core.auth import csrf  # noqa
 from core.config import settings
 from views import router as views_router
 from create_fastapi_app import create_app
