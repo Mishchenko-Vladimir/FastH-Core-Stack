@@ -449,6 +449,21 @@ wheels = [
 ]
 
 [[package]]
+name = "fastapi-csrf-protect"
+version = "1.0.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "itsdangerous" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "starlette" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f6/1a/fedbcb4aba24ccc8abfb5d30e08112073c6a9f20b8d88adbdd3051ceedac/fastapi_csrf_protect-1.0.7.tar.gz", hash = "sha256:888b15b232625aae5b997fbcf81ef45633a7694f0312a054f1eec6d132b295fb", size = 207326, upload-time = "2025-09-16T07:06:08.586Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bf/10/f248aab919678444723d557da918088e5c737b44e03e3aa4a0ad7afc7dae/fastapi_csrf_protect-1.0.7-py3-none-any.whl", hash = "sha256:ca3c5b50564af932ac4ed3d06caeed61bf16eed13a31cfe2bdfc3f7c1e8612a3", size = 18412, upload-time = "2025-09-16T07:06:05.926Z" },
+]
+
+[[package]]
 name = "fastapi-users"
 version = "15.0.5"
 source = { registry = "https://pypi.org/simple" }
@@ -497,6 +512,7 @@ dependencies = [
     { name = "faker" },
     { name = "fastapi" },
     { name = "fastapi-cache2" },
+    { name = "fastapi-csrf-protect" },
     { name = "fastapi-users", extra = ["sqlalchemy"] },
     { name = "gunicorn" },
     { name = "httpx" },
@@ -524,6 +540,7 @@ requires-dist = [
     { name = "faker", specifier = ">=40.1.0" },
     { name = "fastapi", specifier = ">=0.128.0" },
     { name = "fastapi-cache2", specifier = ">=0.2.2" },
+    { name = "fastapi-csrf-protect", specifier = ">=1.0.7" },
     { name = "fastapi-users", extras = ["sqlalchemy"], specifier = ">=15.0.3" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "httpx", specifier = ">=0.28.1" },
