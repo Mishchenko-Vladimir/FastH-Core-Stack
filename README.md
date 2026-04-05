@@ -43,7 +43,7 @@
 | **✅ Валидация:** Pydantic v2 + pydantic-settings | [![Pydantic](https://img.shields.io/badge/Pydantic-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://docs.pydantic.dev/) [![pydantic--settings](https://img.shields.io/badge/pydantic--settings-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) |
 | **🧩 Кэширование:** Redis + fastapi-cache2 | [![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/) |
 | **📄 Шаблонизация:** Jinja2 | [![Jinja2](https://img.shields.io/badge/Jinja2-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://jinja.palletsprojects.com/) |
-| **🛡️ Защита:** slowapi + CORS | [![slowapi](https://img.shields.io/badge/slowapi-005571?style=for-the-badge&logo=fastapi&logoColor=white)](https://slowapi.readthedocs.io/) [![CORS](https://img.shields.io/badge/CORS-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://fastapi.tiangolo.com/tutorial/cors/) |
+| **🛡️ Защита:** slowapi + CORS + CSRF | [![slowapi](https://img.shields.io/badge/slowapi-005571?style=for-the-badge&logo=fastapi&logoColor=white)](https://slowapi.readthedocs.io/) [![CORS](https://img.shields.io/badge/CORS-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://fastapi.tiangolo.com/tutorial/cors/) [![CSRF](https://img.shields.io/badge/CSRF-DC143C?style=for-the-badge&logo=python&logoColor=white)](https://github.com/ambrxus/fastapi-csrf-protect) |
 | **📧 Почта:** aiosmtplib | [![aiosmtplib](https://img.shields.io/badge/aiosmtplib-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://aiosmtplib.readthedocs.io/) |
 | **📦 Менеджер пакетов:** uv | [![uv](https://img.shields.io/badge/uv-000000?style=for-the-badge&logo=python&logoColor=white)](https://docs.astral.sh/uv/) |
 | **🐳 Контейнеризация:** Docker + Docker Compose | [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) [![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docs.docker.com/compose/) |
@@ -69,9 +69,10 @@
 - **🛠️ Профессиональная админ-панель (SQLAdmin)**
   > Полноценный интерфейс для управления данными: CRUD операции, поиск и фильтрация. 
   > Настроено красивое отображение дат и статусов пользователей.
-- **🛡️ Защита и контроль трафика (Slowapi)**
+- **🛡️ Защита CSRF, CORS и контроль трафика (Slowapi)**
   > Встроенный `Rate Limiting` на критических эндпоинтах для защиты от brute-force и спама. 
   > Гибкая настройка CORS для безопасности.
+  > `Fastapi-csrf-protect` для встроенной защиты от межсайтовой подделки запросов, настроенная для работы с HTMX (Double Submit Cookie).
 - **🏗️ Современная архитектура (Clean Architecture)**
   > Четкое разделение на слои: API, Views, Services, Repositories и Models.
   > Проект спроектирован как надежный и масштабируемый фундамент.
@@ -165,6 +166,8 @@ FastH-Core-Stack/
 - `🚦 Error Handling` — Кастомные страницы для обработки системных событий:
   - `404 Not Found` — Если страница не существует.
   - `429 Rate Limit` — Интеллектуальная защита от перегрузок и ботов (Slowapi).
+  - `🛡️ Security Error` — Специализированная страница для ошибок CSRF (Security Session Expired), помогающая пользователю безопасно обновить сессию.
+
 
 ![Изображения работы приложения](docs/assets/examples-application-operation.png)
 

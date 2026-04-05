@@ -42,7 +42,7 @@ Forget about heavy JS frameworks and JWT overhead: everything here is powered by
 | **✅ Validation:** Pydantic v2 + pydantic-settings | [![Pydantic](https://img.shields.io/badge/Pydantic-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://docs.pydantic.dev/) [![pydantic--settings](https://img.shields.io/badge/pydantic--settings-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) |
 | **🧩 Caching:** Redis + fastapi-cache2 | [![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/) |
 | **📄 Templating:** Jinja2 | [![Jinja2](https://img.shields.io/badge/Jinja2-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://jinja.palletsprojects.com/) |
-| **🛡️ Security:** slowapi + CORS | [![slowapi](https://img.shields.io/badge/slowapi-005571?style=for-the-badge&logo=fastapi&logoColor=white)](https://slowapi.readthedocs.io/) [![CORS](https://img.shields.io/badge/CORS-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://fastapi.tiangolo.com/tutorial/cors/) |
+| **🛡️ Security:** slowapi + CORS + CSRF | [![slowapi](https://img.shields.io/badge/slowapi-005571?style=for-the-badge&logo=fastapi&logoColor=white)](https://slowapi.readthedocs.io/) [![CORS](https://img.shields.io/badge/CORS-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://fastapi.tiangolo.com/tutorial/cors/) [![CSRF](https://img.shields.io/badge/CSRF-DC143C?style=for-the-badge&logo=python&logoColor=white)](https://github.com/ambrxus/fastapi-csrf-protect) |
 | **📧 Email:** aiosmtplib | [![aiosmtplib](https://img.shields.io/badge/aiosmtplib-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://aiosmtplib.readthedocs.io/) |
 | **📦 Package Manager:** uv | [![uv](https://img.shields.io/badge/uv-000000?style=for-the-badge&logo=python&logoColor=white)](https://docs.astral.sh/uv/) |
 | **🐳 Containerization:** Docker + Docker Compose | [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/) [![Docker Compose](https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docs.docker.com/compose/) |
@@ -66,9 +66,10 @@ Forget about heavy JS frameworks and JWT overhead: everything here is powered by
 - **🛠️ Professional Admin Panel (SQLAdmin)**
   > Comprehensive data management interface: CRUD operations, advanced search, and filtering. 
   > Pre-configured beautiful formatting for dates and user statuses.
-- **🛡️ Traffic Control & Protection (Slowapi)**
+- **🛡️ CSRF, CORS & Traffic Control (Slowapi)**
   > Built-in `Rate Limiting` on critical endpoints to protect against brute-force and spam. 
   > Flexible `CORS` configuration for enhanced security.
+  > Integrated `Fastapi-csrf-protect` for defense against cross-site request forgery, fine-tuned for `HTMX` (Double Submit Cookie).
 - **🏗️ Modern Architecture (Clean Architecture)**  
   > Clean separation into layers: API, Services, Repositories, and Models.  
   > Easy maintainability and scalability via dependency inversion.
@@ -161,6 +162,7 @@ Below are the key screens of the application, demonstrating the seamless integra
 - `🚦 Error Handling` — Custom-styled pages for system events:
   - `404 Not Found` — Graceful handling of non-existent routes.
   - `429 Rate Limit` — Intelligent protection against spam and brute-force (Slowapi).
+  - `🛡️ Security Error` — Dedicated page for CSRF issues (Security Session Expired), guiding the user to refresh their session securely.
 
 ![Image application operation](docs/assets/examples-application-operation.png)
 
