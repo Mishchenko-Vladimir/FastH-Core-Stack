@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request
 
-from core import settings, limiter, templates
-
+from core import limiter, templates
+from core.config import settings
 
 router = APIRouter(prefix=settings.view.limit_exceeded)
 

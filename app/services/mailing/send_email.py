@@ -42,13 +42,13 @@ async def send_email(
         )
         message.attach(html_message)
 
-    if settings.smtp.enabled or settings.site.environment == "production":
+    if settings.smtp.use_real_smtp or settings.site.environment == "production":
         await aiosmtplib.send(
             message,
             hostname=settings.smtp.host,
             port=settings.smtp.port,
             username=settings.smtp.username,
-            password=settings.smtp.password,
+            password=settings.smtp.password.get_secret_value(),
             use_tls=settings.smtp.use_tls,
         )
     else:

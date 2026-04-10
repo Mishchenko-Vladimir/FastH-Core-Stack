@@ -3,9 +3,9 @@ from fastapi import APIRouter
 from core.auth.dependencies.fastapi_users import fastapi_users
 from core.auth.backend import authentication_backend
 
-from core import limiter, settings
+from core import limiter
+from core.config import settings
 from schemas.user import UserRead, UserCreate
-
 
 router = APIRouter(prefix=settings.api.v1.auth, tags=["Auth 🔐"])
 

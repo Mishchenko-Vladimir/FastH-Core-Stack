@@ -112,7 +112,7 @@ FastH-Core-Stack/
 │   │   ├── auth/                # FastAPI-Users security config
 │   │   ├── cache/               # Redis caching setup
 │   │   ├── gunicorn/            # Production WSGI config
-│   │   ├── config.py            # Settings validation (pydantic-settings)
+│   │   ├── config/              # Settings validation (pydantic-settings)
 │   │   ├── db_helper.py         # SQLAlchemy engine/session setup
 │   │   ├── limiter.py           # Rate limiting config
 │   │   └── templates.py         # Jinja2Templates integration

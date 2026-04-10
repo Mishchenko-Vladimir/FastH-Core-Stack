@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 
-from core import settings, templates
+from core import templates
+from core.config import settings
 
 router = APIRouter(prefix=settings.view.security_error)
 

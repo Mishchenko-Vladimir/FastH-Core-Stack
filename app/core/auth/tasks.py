@@ -6,7 +6,9 @@ from sqlalchemy import delete
 
 from models.access_token import AccessToken
 from models.user import User
-from core import db_helper, settings
+
+from core import db_helper
+from core.config import settings
 
 log = logging.getLogger(__name__)
 

@@ -2,7 +2,6 @@ import logging
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import ORJSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
@@ -14,6 +13,7 @@ from fastapi_cache.backends.redis import RedisBackend
 
 from sqladmin import Admin
 from slowapi.middleware import SlowAPIMiddleware
+from starlette.responses import JSONResponse
 from contextlib import asynccontextmanager
 from redis.asyncio import Redis
 
@@ -24,7 +24,8 @@ from middleware.custom_rate_limit_middleware import CustomRateLimitMiddleware
 from middleware.security_headers_middleware import SecurityHeadersMiddleware
 
 from api.webhooks import webhooks_router
-from core import db_helper, limiter, settings, BASE_DIR
+from core import db_helper, limiter
+from core.config import BASE_DIR, settings
 from core.auth.tasks import setup_auth_scheduler
 from exceptions.handlers import register_errors_handlers
 
@@ -133,7 +134,7 @@ def create_app(
     """
 
     app = FastAPI(
-        default_response_class=ORJSONResponse,
+        default_response_class=JSONResponse,
         lifespan=lifespan_override or lifespan,
         docs_url=None if create_custom_static_urls else "/docs",
         redoc_url=None if create_custom_static_urls else "/redoc",
@@ -160,7 +161,7 @@ def create_app(
 
     if settings.site.environment != "testing":
         authentication_backend = AdminAuth(
-            secret_key=settings.access_token.verification_token_secret
+            secret_key=settings.admin.secret_key.get_secret_value()
         )
         admin = Admin(
             app=app,

@@ -1,7 +1,8 @@
 from typing import Any
 from fastapi import Request
-from fastapi.responses import ORJSONResponse, RedirectResponse
+from fastapi.responses import RedirectResponse
 from starlette.types import ASGIApp, Receive, Scope, Send
+from starlette.responses import JSONResponse
 
 from core.templates import templates
 
@@ -34,7 +35,7 @@ class CustomRateLimitMiddleware:
     1. Middleware ожидает завершения обработки запроса.
     2. Когда сервер пытается отправить ответ с `status=429`, middleware перехватывает его.
     3. В зависимости от пути:
-       - Если путь начинается с `/api` → возвращается `ORJSONResponse` с JSON-ошибкой.
+       - Если путь начинается с `/api` → возвращается `JSONResponse` с JSON-ошибкой.
        - Иначе → редирект на `/limit-exceeded`.
     4. Оригинальный ответ не отправляется.
 
@@ -76,7 +77,7 @@ class CustomRateLimitMiddleware:
 
                 # Если это API
                 if request.url.path.startswith("/api"):
-                    response = ORJSONResponse(
+                    response = JSONResponse(
                         content={
                             "detail": "Too many requests. Please try again later."
                         },

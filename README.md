@@ -115,7 +115,7 @@ FastH-Core-Stack/
 │   │   ├── auth/                # Конфигурация безопасности и логика fastapi-users
 │   │   ├── cache/               # Настройки и утилиты кэширования (Redis)
 │   │   ├── gunicorn/            # Конфигурация WSGI-сервера для продакшена
-│   │   ├── config.py            # Валидация настроек через pydantic-settings (.env)
+│   │   ├── config/              # Валидация настроек через pydantic-settings (.env)
 │   │   ├── db_helper.py         # Инициализация движка SQLAlchemy и сессий
 │   │   ├── limiter.py           # Настройка ограничений частоты запросов (Rate Limiting)
 │   │   └── templates.py         # Интеграция и конфигурация Jinja2Templates

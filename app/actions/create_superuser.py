@@ -3,7 +3,8 @@ import logging
 
 from fastapi_users import exceptions
 
-from core import db_helper, settings
+from core import db_helper
+from core.config import settings
 from core.auth.dependencies import user_manager_context, get_users_db_context
 from core.auth.user_manager import UserManager
 from models.user import User
@@ -50,7 +51,7 @@ async def create_superuser() -> None:
 
                     user_create = UserCreate(
                         email=settings.admin.admin_email,
-                        password=settings.admin.admin_password,
+                        password=settings.admin.admin_password.get_secret_value(),
                         first_name="Admin",
                         is_active=True,
                         is_superuser=True,

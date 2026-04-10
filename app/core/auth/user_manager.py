@@ -37,8 +37,8 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, UserIdType]):
     позволяя выполнять фоновые задачи (например, отправку писем) и сброс кэша при изменениях.
 
     Attributes:
-        reset_password_token_secret (str): Секретный ключ для генерации токена сброса пароля.
-        verification_token_secret (str): Секретный ключ для генерации токена подтверждения email.
+        reset_password_token_secret (SecretStr): Секретный ключ для генерации токена сброса пароля.
+        verification_token_secret (SecretStr): Секретный ключ для генерации токена подтверждения email.
         background_tasks (BackgroundTasks | None): Объект для выполнения фоновых задач (например, отправка email).
 
     Args:
@@ -54,8 +54,12 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, UserIdType]):
         on_after_delete: Вызывается после удаления пользователя.
     """
 
-    reset_password_token_secret = settings.access_token.reset_password_token_secret
-    verification_token_secret = settings.access_token.verification_token_secret
+    reset_password_token_secret = (
+        settings.access_token.reset_password_token_secret.get_secret_value()
+    )
+    verification_token_secret = (
+        settings.access_token.verification_token_secret.get_secret_value()
+    )
 
     def __init__(
         self,
